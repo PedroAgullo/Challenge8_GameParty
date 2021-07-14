@@ -34,9 +34,11 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
+    public function show($id)
     {
-        $user = auth()->user()->find($request->id);
+
+        $user = auth()->user()->find($id);
+
 
         if (!$user) {
             return response()->json([
@@ -47,8 +49,8 @@ class UserController extends Controller
 
         return response()->json([
             'success' => true,
-            'data' => $user->toArray()
-        ], 400);
+            'data' => $user
+        ], 200);
     }
 
     /**
@@ -63,6 +65,8 @@ class UserController extends Controller
         //
         $usuario = auth()->user()->find($request->id);
 
+
+        
         if (!$usuario) {
             return response()->json([
                 'success' => false,

@@ -22,5 +22,6 @@ Route::post('login', [PassportAuthController::class, 'login']);
 
 Route::middleware('auth:api')->group(function () {
     // Route::post('users', [UserController::class, 'update']);
+    Route::post('users/update', UserController::class, 'update');
     Route::resource('users', UserController::class);
 });
