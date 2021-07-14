@@ -20,8 +20,15 @@ use App\Http\Controllers\UserController;
 Route::post('register', [PassportAuthController::class, 'register']);
 Route::post('login', [PassportAuthController::class, 'login']);
 
+
+
 Route::middleware('auth:api')->group(function () {
-    // Route::post('users', [UserController::class, 'update']);
-    Route::post('users/update', UserController::class, 'update');
-    Route::resource('users', UserController::class);
+    Route::post('logout', [UserController::class, 'logout']);
+    Route::post('users', [UserController::class, 'update']);
+    Route::post('users/all', [UserController::class, 'all']);
+
+    // Route::post('users/update', UserController::class, 'update');
+    
+    // Route::resource('users', UserController::class);
+    // Route::resource('logout', UserController::class, 'logout');
 });
