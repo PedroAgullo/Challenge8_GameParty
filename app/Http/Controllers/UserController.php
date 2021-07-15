@@ -77,7 +77,7 @@ class UserController extends Controller
             return response()->json([
                 'success' => false,
                 'messate' => 'No tienes permiso para realizar esta acción'
-            ], 200);
+            ], 400);
 
         }
     }
@@ -161,8 +161,6 @@ class UserController extends Controller
 
     public function logout(Request $request) {
         $user = auth()->user()->token()->revoke();
-
-        
 
         if(!$user){
             return response()->json([

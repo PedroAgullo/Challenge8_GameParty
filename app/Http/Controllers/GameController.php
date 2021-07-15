@@ -25,7 +25,32 @@ class GameController extends Controller
      */
     public function store(Request $request)
     {
-        //
+    //
+        $this->validate($request, [
+            'title' => 'required',
+            'image' => 'required',
+            'url' => 'required',
+        ]);
+
+        $game = Game::create([
+            'title' => $request->title,
+            'image' => $request->image,
+            'url' => $request->url
+        ]);
+
+        if ($game){
+
+            return response()->json([
+                'success' => true,
+                'data' => $game
+            ], 200);  
+
+        }else{
+            return response()->json([
+                'success' => false,
+                'message' => 'Error. Game not created'
+            ], 400);  
+        }
     }
 
     /**

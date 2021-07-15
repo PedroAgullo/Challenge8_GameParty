@@ -7,6 +7,21 @@ use Illuminate\Database\Eloquent\Model;
 
 class Party extends Model
 {
+
+
+        /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'title',
+        'game_id',
+        'membership_id'
+    ];
+
+
+
     // use HasFactory;
     public function message (){
         return $this -> hasMany(Message::class);

@@ -9,7 +9,19 @@ class Game extends Model
 {
     // use HasFactory;
 
-    public function game (){
-        return $this -> hasMany(Game::class);
-    }
+        /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'title',
+        'image',
+        'url'
+    ];
+
+
+    // public function game (){
+    //     return $this -> hasMany(Game::class);
+    // }
 }
