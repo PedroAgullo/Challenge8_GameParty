@@ -14,8 +14,16 @@ class GameController extends Controller
      */
     public function index()
     {
-        //
+        //    
+        $resultado = Game::all();
+        
+        return response()->json([
+            'success' => true,
+            'data' => $resultado
+        ], 200);
+
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -53,16 +61,24 @@ class GameController extends Controller
         }
     }
 
+
     /**
      * Display the specified resource.
      *
      * @param  \App\Models\Game  $game
      * @return \Illuminate\Http\Response
      */
-    public function show(Game $game)
+    public function show($game)
     {
         //
+        $resultado = Game::find($game);
+        
+        return response()->json([
+            'success' => true,
+            'data' => $resultado
+        ], 200);
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -75,6 +91,7 @@ class GameController extends Controller
     {
         //
     }
+
 
     /**
      * Remove the specified resource from storage.

@@ -33,7 +33,9 @@ Route::middleware('auth:api')->group(function () {
     
     Route::resource('partys', PartyController::class);
     
-    Route::post('games', [GameController::class, 'store']);
+    Route::resource('games', GameController::class);
+    
+    // Route::post('games', [GameController::class, 'store']);
     
     // Route::resource('users', [UserController::class]);
     // Route::post('users/update', UserController::class, 'update');
