@@ -162,6 +162,8 @@ class UserController extends Controller
     public function logout(Request $request) {
         $user = auth()->user()->token()->revoke();
 
+        
+
         if(!$user){
             return response()->json([
                 'succes' => false,
