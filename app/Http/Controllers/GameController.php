@@ -25,6 +25,23 @@ class GameController extends Controller
     }
 
 
+        /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function byId(Request $request)
+    {
+        //    
+        $game = Game::all()->find($request->gameId);
+        
+        return response()->json([
+            'success' => true,
+            'data' => $game,
+        ], 200);
+    }
+
+
     /**
      * Store a newly created resource in storage.
      *
@@ -87,9 +104,36 @@ class GameController extends Controller
      * @param  \App\Models\Game  $game
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Game $game)
+    public function update(Request $request)
     {
         //
+        $user = auth()-> user();
+
+        if($user->isAdmin == false){
+            return response()->json([
+                'success' => true,
+                'message' => 'No tienes permiso para editar los datos de los juegos ' 
+            ], 400);
+        }
+
+
+        $updated = $game->fill($request->all())->save();
+        
+        if ($updated)
+            return response()->json([
+                'success' => true,
+                'message' => 'Data user updated'
+            ]);
+        else
+            return response()->json([
+                'success' => false,
+                'message' => 'User can not be updated'
+            ], 500);
+
+
+
+
+
     }
 
 
@@ -99,8 +143,35 @@ class GameController extends Controller
      * @param  \App\Models\Game  $game
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Game $game)
+    public function destroy(Request $request)
     {
         //
+
+        $user = auth()-> user();
+
+        if($user->isAdmin == false){
+            return response()->json([
+                'success' => true,
+                'message' => 'No tienes permiso para eleminar juegos ' 
+            ], 400);
+        }
+
+        $game = Game::all()->find($request->gameId);
+
+
+        if ($game -> delete()){
+            return response()->json([
+                'succes' => true,
+                'message' => 'The game ' . $game->title . ' with the id ' . $game->id . ' has been deleted'
+            ]);
+        }else {
+            return response() ->json([
+                'success' => false,
+                'message' => 'Game can not be deleted',
+            ], 500);
+        }
+
+
+
     }
 }

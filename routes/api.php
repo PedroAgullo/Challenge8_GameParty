@@ -27,16 +27,19 @@ Route::post('login', [PassportAuthController::class, 'login']);
 
 Route::middleware('auth:api')->group(function () {
 
+
     Route::post('logout', [UserController::class, 'logout']);
     Route::post('users/all', [UserController::class, 'all']);
     Route::resource('users', UserController::class);
     
     Route::resource('partys', PartyController::class);
+
     
+    Route::post('games/id', [GameController::class, 'byId']);
+    Route::delete('games/delete', [GameController::class, 'destroy']);
     Route::resource('games', GameController::class);
     
-    // Route::post('games', [GameController::class, 'store']);
-    
+    // Route::post('games', [GameController::class, 'store']);    
     // Route::resource('users', [UserController::class]);
     // Route::post('users/update', UserController::class, 'update');
     // Route::resource('logout', UserController::class, 'logout');

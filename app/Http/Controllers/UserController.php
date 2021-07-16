@@ -108,8 +108,10 @@ class UserController extends Controller
         
         if ($updated)
             return response()->json([
-                'success' => true
-            ]);
+                'success' => true,
+                'message' => 'User updated'
+
+            ], 200);
         else
             return response()->json([
                 'success' => false,
