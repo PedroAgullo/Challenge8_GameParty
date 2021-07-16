@@ -15,6 +15,7 @@ class PartyController extends Controller
     public function index()
     {
         //
+
     }
 
     /**
@@ -26,6 +27,30 @@ class PartyController extends Controller
     public function store(Request $request)
     {
         //
+
+        $this->validate($request, [
+            'title',
+            'game_id'
+        ]);
+
+        $party = Party::create([
+            'title' => $request->title,
+            'game_id' => $request->game_id,
+            'userOwner' => auth()->user()->id
+        ]);
+
+        if ($party){
+            return response()->json([
+                'success' => true,
+                'data' => $party
+            ], 200);  
+
+        }else{
+            return response()->json([
+                'success' => false,
+                'message' => 'Error. Game not created'
+            ], 400);  
+        }
     }
 
     /**

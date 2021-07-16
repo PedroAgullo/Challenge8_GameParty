@@ -143,7 +143,8 @@ class GameController extends Controller
      * @param  \App\Models\Game  $game
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+
+     public function destroy($id)
     {
         //
 
@@ -156,8 +157,7 @@ class GameController extends Controller
             ], 400);
         }
 
-        $game = Game::all()->find($request->gameId);
-
+        $game = Game::all()->find($id);
 
         if ($game -> delete()){
             return response()->json([
@@ -170,8 +170,6 @@ class GameController extends Controller
                 'message' => 'Game can not be deleted',
             ], 500);
         }
-
-
 
     }
 }
