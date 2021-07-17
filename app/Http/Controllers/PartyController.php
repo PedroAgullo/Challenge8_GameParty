@@ -15,6 +15,12 @@ class PartyController extends Controller
     public function index()
     {
         //
+        $resultado = Party::all();
+        
+        return response()->json([
+            'success' => true,
+            'data' => $resultado
+        ], 200);
 
     }
 
@@ -48,8 +54,8 @@ class PartyController extends Controller
         }else{
             return response()->json([
                 'success' => false,
-                'message' => 'Error. Game not created'
-            ], 400);  
+                'message' => 'Error. Party not created'
+            ], 500);  
         }
     }
 

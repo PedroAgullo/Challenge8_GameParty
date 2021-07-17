@@ -33,7 +33,7 @@ Route::middleware('auth:api')->group(function () {
     Route::resource('users', UserController::class);
     
 
-    Route::resource('partys', PartyController::class);
+    Route::resource('parties', PartyController::class);
 
     
     Route::post('games/id', [GameController::class, 'byId']);

@@ -15,7 +15,7 @@ class CreateMessages extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('party_id')->references('id')->on('partys');
+            $table->foreignId('party_id')->references('id')->on('parties');
             $table->foreignId('user_id')->references('id')->on('users');
             $table->text("text");
             $table->timestamps();
