@@ -6,6 +6,7 @@ use App\Http\Controllers\PassportAuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PartyController;
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\MembershipController;
 
 
 
@@ -34,6 +35,7 @@ Route::middleware('auth:api')->group(function () {
     
 
     Route::resource('parties', PartyController::class);
+    Route::resource('memberships', MembershipController::class);
 
     
     Route::post('games/id', [GameController::class, 'byId']);

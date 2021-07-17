@@ -26,8 +26,40 @@ class MembershipController extends Controller
     public function store(Request $request)
     {
         //
+
+        $user = auth()->user();
+
+        $this->validate($request, [
+            'party_id'  
+        ]);
+
+
+
+
+
+
+        $party = Membership::create([
+            'user_id' => $user->id,
+            'party_id' => $request->party_id,
+        ]);
+
+        if ($party){
+            return response()->json([
+                'success' => true,
+                'data' => $party
+            ], 200);  
+
+        }else{
+            return response()->json([
+                'success' => false,
+                'message' => 'Error. Party not created'
+            ], 500);  
+        }
+
     }
 
+
+    
     /**
      * Display the specified resource.
      *
