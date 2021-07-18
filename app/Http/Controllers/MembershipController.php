@@ -17,6 +17,12 @@ class MembershipController extends Controller
     public function index()
     {
         //
+        $resultado = Membership::all();
+        return response()->json([
+            'success' => true,
+            'message' => $resultado
+        ], 200); 
+
     }
 
     /**
@@ -74,9 +80,14 @@ class MembershipController extends Controller
      * @param  \App\Models\Membership  $membership
      * @return \Illuminate\Http\Response
      */
-    public function show(Membership $membership)
+    public function show($party_id)
     {
         //
+        $resultado = Membership::all()->groupBy('party_id');
+        return response()->json([
+            'success' => true,
+            'message' => $resultado
+        ], 200); 
     }
 
     /**

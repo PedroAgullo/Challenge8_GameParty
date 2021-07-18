@@ -96,6 +96,14 @@ class UserController extends Controller
         //
         $usuario = auth()->user()->find($id);
         
+        if($usuario->id != $id && $usuario->isAdmin == false){
+            return response()->json([
+                'success' => false,
+                'message' => 'No tienes permiso para realizar esta acción'
+            ], 400);
+        }
+
+
         if (!$usuario) {
             return response()->json([
                 'success' => false,
@@ -103,8 +111,10 @@ class UserController extends Controller
             ], 400);
         }
 
-        $updated = $usuario->fill($request->all())->save();
+
         
+        $updated = $usuario->fill($request->all())->save();
+
         if ($updated)
             return response()->json([
                 'success' => true,
