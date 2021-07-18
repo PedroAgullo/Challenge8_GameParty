@@ -17,11 +17,12 @@ class Game extends Model
     protected $fillable = [
         'title',
         'image',
-        'url'
+        'url',
+        'genre'
     ];
 
 
-    // public function game (){
-    //     return $this -> hasMany(Game::class);
-    // }
+    public function user (){
+        return $this -> belongsTo(User::class);
+    }
 }

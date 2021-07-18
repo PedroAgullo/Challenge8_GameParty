@@ -60,7 +60,8 @@ class GameController extends Controller
         $game = Game::create([
             'title' => $request->title,
             'image' => $request->image,
-            'url' => $request->url
+            'url' => $request->url,
+            'genre' => $request->genre
         ]);
 
         if ($game){

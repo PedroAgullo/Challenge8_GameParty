@@ -15,12 +15,15 @@ class PassportAuthController extends Controller
             'name' => 'required|min:4',
             'email' => 'required|email',
             'password' => 'required|min:8',
+            'nickName' => 'required|min:4',            
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => bcrypt($request->password)
+            'password' => bcrypt($request->password),
+            'nickName' => $request->nickName,
+            'steamId' => $request->steamId
         ]);
 
         $token = $user->createToken('LaravelAuthApp')->accessToken;
