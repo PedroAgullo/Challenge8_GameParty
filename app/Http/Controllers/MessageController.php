@@ -111,26 +111,30 @@ class MessageController extends Controller
     {
         
         //Comprobamos que el ID del mensaje existe en la base de datos.
-        $message = Message::where('id', '=', $id)->get();  
+        $message = Message::all()->find($id);  
         $user = auth()->user();
 
 
+        // $message->fill($request->all())->save();
         // return response()->json([
-        //     'success' => false,
-        //     'data' => $message, $user
-        // ], 400);
-        
-        //Si no hay resultado, devolvemos un mensaje de que no existe ese id.
-        // if($message->isEmpty()){
+        //     'success' => true,
+        //     'data' => $message
+        // ], 200); 
+
+
+
+
+        // Si no hay resultado, devolvemos un mensaje de que no existe ese id.
+        // if($message[0]->isEmpty()){
         //     return response()->json([
         //         'success' => false,
         //         'message' => "El mensaje no existe"
         //     ], 400);
         // }
 
-        //
         
-        if($user->isAdmin == true || $user->id == $message[0]->user_id){
+        
+        if($user->isAdmin == true || $user->id == $message->user_id){
             try{
                 $message->fill($request->all())->save();
                 return response()->json([
@@ -145,7 +149,6 @@ class MessageController extends Controller
                 ], 400); 
             }
         }
-
              
     }
 
