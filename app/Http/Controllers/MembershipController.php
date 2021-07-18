@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Membership;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use PhpParser\Node\Stmt\TryCatch;
 
 class MembershipController extends Controller
 {
@@ -34,32 +36,38 @@ class MembershipController extends Controller
         ]);
 
 
+        // $resultado = Membership::where('party_id'=>$request->party_id, 'user_id' => $user->id)->get();
+        $resultado = Membership::where('party_id', '=', $request->party_id)->where('user_id', '=', $user->id)->get();
 
-
-
-
-        $party = Membership::create([
-            'user_id' => $user->id,
-            'party_id' => $request->party_id,
-        ]);
-
-        if ($party){
-            return response()->json([
-                'success' => true,
-                'data' => $party
-            ], 200);  
-
-        }else{
-            return response()->json([
-                'success' => false,
-                'message' => 'Error. Party not created'
-            ], 500);  
+        if($resultado->isEmpty()){
+            $party = Membership::create([
+                'user_id' => $user->id,
+                'party_id' => $request->party_id,
+            ]);
+    
+            if ($party){
+                return response()->json([
+                    'success' => true,
+                    'data' => $party
+                ], 200);  
+    
+            }else{
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Error. Party not created'
+                ], 500);  
+            }
         }
+
+        return response()->json([
+            'success' => true,
+            'message' => "Ya estabas dentro de este party."
+        ], 200); 
 
     }
 
 
-    
+
     /**
      * Display the specified resource.
      *
@@ -89,8 +97,37 @@ class MembershipController extends Controller
      * @param  \App\Models\Membership  $membership
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Membership $membership)
+    public function destroy($party_id)
     {
         //
+
+        $user = auth()->user();
+
+        $resultado = Membership::where('party_id', '=', $party_id)->where('user_id', '=', $user->id)->get();
+
+        if($resultado->isEmpty()){
+        
+            return response()->json([
+                'success' => false,
+                'message' => "No estás dentro de esta party"
+            ], 400); 
+        }else {
+            try{
+                $resultado = Membership::selectRaw('id')
+                ->where('party_id', '=', $party_id)
+                ->where('user_id', '=', $user->id)->delete();
+
+                return response()->json([
+                    'success' => true,
+                    'messate' => "Has abandonado la party"
+                ], 200); 
+
+            }catch(QueryException $err){
+                return response()->json([
+                    'success' => false,
+                    'data' => $err
+                ], 400); 
+            }
+        }
     }
 }

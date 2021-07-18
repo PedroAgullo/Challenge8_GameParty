@@ -22,6 +22,13 @@ class User extends Authenticatable
         return $this -> hasMany(Membership::class);
     }
 
+    public function parties () {
+        return $this->hasMany(Party::class);
+    }
+
+    public function Game () {
+        return $this->hasMany(Game::class);
+    }
 
     /**
      * The attributes that are mass assignable.

@@ -153,7 +153,7 @@ class GameController extends Controller
         if($user->isAdmin == false){
             return response()->json([
                 'success' => true,
-                'message' => 'No tienes permiso para eleminar juegos ' 
+                'message' => 'No tienes permiso para eliminar juegos ' 
             ], 400);
         }
 
