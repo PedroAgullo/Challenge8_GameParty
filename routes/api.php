@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PartyController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\MembershipController;
+use App\Http\Controllers\MessageController;
 
 
 
@@ -21,6 +22,7 @@ use App\Http\Controllers\MembershipController;
 |
 */
 
+
 Route::post('register', [PassportAuthController::class, 'register']);
 Route::post('login', [PassportAuthController::class, 'login']);
 
@@ -28,18 +30,23 @@ Route::post('login', [PassportAuthController::class, 'login']);
 
 Route::middleware('auth:api')->group(function () {
 
-
+    //User routes
     Route::post('logout', [UserController::class, 'logout']);
     Route::post('users/all', [UserController::class, 'all']);
     Route::resource('users', UserController::class);
     
-
+    //Party routes
     Route::resource('parties', PartyController::class);
+
+    //Memberships routes
     Route::resource('memberships', MembershipController::class);
 
-    
+    //Games routes
     Route::post('games/id', [GameController::class, 'byId']);
     Route::resource('games', GameController::class);
     
+    //Message routes
+    Route::resource('messages', MessageController::class);
+
 
 });
