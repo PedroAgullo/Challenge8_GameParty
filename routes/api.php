@@ -43,6 +43,7 @@ Route::middleware('auth:api')->group(function () {
 
     //Games routes
     Route::post('games/id', [GameController::class, 'byId']);
+    Route::post('games/findByName', [GameController::class, 'findByName']);
     Route::resource('games', GameController::class);
     
     //Message routes

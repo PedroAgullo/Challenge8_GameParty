@@ -41,8 +41,6 @@ class MembershipController extends Controller
             'party_id'  
         ]);
 
-
-        // $resultado = Membership::where('party_id'=>$request->party_id, 'user_id' => $user->id)->get();
         $resultado = Membership::where('party_id', '=', $request->party_id)->where('user_id', '=', $user->id)->get();
 
         if($resultado->isEmpty()){

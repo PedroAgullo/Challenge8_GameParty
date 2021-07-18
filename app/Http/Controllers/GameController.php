@@ -42,6 +42,17 @@ class GameController extends Controller
     }
 
 
+    public function findByName(Request $request)
+    {
+        //    
+        $game = Game::where('title', 'LIKE', '%'.$request->title.'%')->get();
+        
+        return response()->json([
+            'success' => true,
+            'data' => $game
+        ], 200);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
