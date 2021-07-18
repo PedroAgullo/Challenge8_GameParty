@@ -16,6 +16,12 @@ class MessageController extends Controller
     public function index()
     {
         //
+        $resultado = Message::all()->groupBy('party_id');
+        
+        return response()->json([
+            'success' => true,
+            'data' => $resultado
+        ], 200);
     }
 
     /**
@@ -74,9 +80,24 @@ class MessageController extends Controller
      * @param  \App\Models\Message  $message
      * @return \Illuminate\Http\Response
      */
-    public function show(Message $message)
+    public function show($party_id)
     {
         //
+                
+        $resultado = Message::all()->where('party_id', $party_id);
+        
+        if($resultado->isEmpty()){
+        
+            return response()->json([
+                'success' => false,
+                'message' => "Party no encontrada."
+            ], 400); 
+        }
+
+        return response()->json([
+            'success' => true,
+            'data' => $resultado
+        ], 200);
     }
 
     /**
@@ -86,9 +107,46 @@ class MessageController extends Controller
      * @param  \App\Models\Message  $message
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Message $message)
+    public function update(Request $request, $id)
     {
+        
+        //Comprobamos que el ID del mensaje existe en la base de datos.
+        $message = Message::where('id', '=', $id)->get();  
+        $user = auth()->user();
+
+
+        // return response()->json([
+        //     'success' => false,
+        //     'data' => $message, $user
+        // ], 400);
+        
+        //Si no hay resultado, devolvemos un mensaje de que no existe ese id.
+        // if($message->isEmpty()){
+        //     return response()->json([
+        //         'success' => false,
+        //         'message' => "El mensaje no existe"
+        //     ], 400);
+        // }
+
         //
+        
+        if($user->isAdmin == true || $user->id == $message[0]->user_id){
+            try{
+                $message->fill($request->all())->save();
+                return response()->json([
+                    'success' => true,
+                    'messate' => "El mensaje ha sido editado. Datos guardados."
+                ], 200); 
+
+            }catch(QueryException $err){
+                return response()->json([
+                    'success' => false,
+                    'data' => $err
+                ], 400); 
+            }
+        }
+
+             
     }
 
     /**
@@ -124,8 +182,8 @@ class MessageController extends Controller
             return response()->json([
                 'success' => false,
                 'message' => "Tienes que entrar en la party para poder eliminar tus mensajes"
-            ], 400);
-        }else {
+            ], 400);            
+        }elseif($user->isAdmin == true || $user->id == $message->user_id) { //Comprobamos si el usuario es el creador del mensaje o es un admin.
             try{
                 //Buscamos el id del mensaje dado y lo eliminamos
                 Message::all()->find($messageId)->delete();                
@@ -141,6 +199,11 @@ class MessageController extends Controller
                     'data' => $err
                 ], 400); 
             }
+        }else {
+            return response()->json([
+                'success' => false,
+                'message' => "Solo el admin o el dueño del mensaje puede borrarlo"
+            ], 400); 
         }
     }
 }
