@@ -1,62 +1,123 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+<a name="top"></a>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+<h1 align="center">
+  <br>Bienvenidos a "DiscorDia". 
+  <br>Tu App sobre Videojuegos.
+</h1>
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+:speech_balloon: [About](#id1)   
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+:hammer: [Herramientas](#id2)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+:exclamation: [Requisitos y extras](#id5)
 
-## Learning Laravel
+:collision: [Proximamente](#id7)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+:smile: [Thanks](#id8)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
+<a name="id1"></a>
+## **Sobre el proyecto**
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Realización del backend de una app donde los usuarios pueden crear salas (parties) donde chatear sobre sus juegos favoritos.
 
-### Premium Partners
+Es el 9º proyecto de la  [GeeksHubs Academy](https://bootcamp.geekshubsacademy.com/) Full Stack Developer Bootcamp, realizado con php y Laravel.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
+---
+**Fecha de comienzo:** 12 / Jul /2021
+**Fecha de entrega:** 18 / Jul / 2021
 
-## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+**Realizado por:**
+* [Pedro Agulló Marco](https://github.com/PedroAgullo)
 
-## Code of Conduct
+---
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+<a name="id2"></a>
+***
+## **Herramientas**
 
-## Security Vulnerabilities
+**DBeaver**
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+<img src="./resources/img/dBeaver.png">
 
-## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+| <img src="./resources/img/logovisual.png" alt="Visual" width="30"/> | Visual Studio Code |
+
+| <img src="./resources/img/php.png" alt="Visual" width="30"/> | PHP |
+
+| <img src="./resources/img/laravel.png" alt="Visual" width="30"/> | Laravel  |
+
+| <img src="./resources/img/docker.png" alt="Visual" width="30"/> | Docker  |
+
+| <img src="./resources/img/git.png" alt="Git" width="30"/> | Git |
+
+
+
+<a name="id3"></a>
+***
+
+
+<a name="id5"></a>
+## Requisitos del proyecto
+
+Los requisitos funcionales de la aplicación son los siguientes:
+* Los usuarios se tienen que poder registrar a la aplicación, estableciendo un usuario/contraseña.
+* Los usuarios tienen que autenticarse a la aplicación haciendo login.
+* Los usuarios tienen que poder crear Partías (grupos) por un determinado videojuego.
+* Los usuarios tienen que poder buscar Partías seleccionando un videojuego.
+* Los usuarios pueden entrar y salir de una Party.
+* Los usuarios tienen que poder enviar mensajes a la Party. Estos mensajes tienen que poder ser editados y borrados por su usuario creador.
+* Los mensajes que existan a una Party se tienen que visualizar como un chat común.
+* Los usuarios pueden introducir y modificar sus datos de perfil, por
+ejemplo, su usuario de Steam.
+* Los usuarios tienen que poder hacer logout de la aplicación web.
+
+<a name="id6"></a>
+## Puntos extra
+
+**Usuario**
+
+  * Crear nuevos juegos.
+  * Editar/eliminar los juegos que él ha creado.
+  * Ver los juegos por género.
+  * Ver todos los juegos disponibles.
+  * Buscar los juegos por título.
+  * Ver todas las parties que hay creadas.
+  * Ver parties por ID del juego.
+  * Buscar parties por nombre.
+  * Crear parties con la temática que elija.
+  * Crear partis privadas con password.
+  * Borrar parties que haya creado.
+  * Entrar/salir a una party.
+  * Escribir mensajes en las parties donde haya entrado.
+  * Puede editar/eliminar sus mensajes.
+  * Ve todos los mensajes de una party donde haya entrado en forma de chat.
+  
+
+**Admin**
+
+  * Busqueda de usuarios por email e ID y editar sus datos.
+  * Eliminar/editar usuarios.
+  * Ver todos los usuarios.
+  * Estadísticas, numero de unidades vendidas por tipo de venta e ingresos por tipo de venta.
+
+
+<a name="id7"></a>
+***
+## **Proximamente**
+
+* Activación de cuenta de usuario por email.
+
+<a name="id8"></a>
+***
+## **Thanks**
+
+Gracias a todos mis compañeros por su ayuda en este proyecto. Y en especial a mi mujer y a mis hijos por el apoyo que me dan.
+
+<br>
+<br>
+
+[UP](#top)

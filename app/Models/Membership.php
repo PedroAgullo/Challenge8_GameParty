@@ -10,6 +10,13 @@ class Membership extends Model
     
     // use HasFactory;
 
+    protected $fillable = [
+        'user_id',
+        'party_id'        
+    ];
+
+
+
     public function party (){
         return $this -> belongsTo(Party::class);
     }

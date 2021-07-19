@@ -1,0 +1,10 @@
+Aventura
+Accion
+Estrategia
+Rol
+Deportivo
+Plataformas
+Simulador
+Multijugador online
+FPS
+Carreras
