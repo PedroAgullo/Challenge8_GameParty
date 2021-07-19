@@ -18,6 +18,8 @@ class CreateParties extends Migration
             $table->string('title', 50);
             $table->foreignId('game_id')->references('id')->on('games');
             $table->string('userOwner');
+            $table->boolean('private')->default(false);
+            $table->string('password')->default('');
             $table->timestamps();
         });
     }

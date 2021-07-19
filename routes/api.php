@@ -27,7 +27,6 @@ Route::post('register', [PassportAuthController::class, 'register']);
 Route::post('login', [PassportAuthController::class, 'login']);
 
 
-
 Route::middleware('auth:api')->group(function () {
 
     //User routes
@@ -44,10 +43,10 @@ Route::middleware('auth:api')->group(function () {
     //Games routes
     Route::post('games/id', [GameController::class, 'byId']);
     Route::post('games/findByName', [GameController::class, 'findByName']);
+    Route::post('games/findByGenre', [GameController::class, 'findByGenre']);
     Route::resource('games', GameController::class);
-    
+
     //Message routes
     Route::resource('messages', MessageController::class);
-
 
 });

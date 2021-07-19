@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Membership;
+use App\Models\Party;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use PhpParser\Node\Stmt\TryCatch;
@@ -38,8 +39,21 @@ class MembershipController extends Controller
         $user = auth()->user();
 
         $this->validate($request, [
-            'party_id'  
+            'party_id',
+            'password'
         ]);
+        
+        
+        $partyRequest = Party::all()->find($request->party_id);
+
+        if($partyRequest->private == true){
+            if($partyRequest->password != $request->password){
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Wrong password'
+                ], 400); 
+            }
+        }
 
         $resultado = Membership::where('party_id', '=', $request->party_id)->where('user_id', '=', $user->id)->get();
 

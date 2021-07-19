@@ -114,25 +114,6 @@ class MessageController extends Controller
         $message = Message::all()->find($id);  
         $user = auth()->user();
 
-
-        // $message->fill($request->all())->save();
-        // return response()->json([
-        //     'success' => true,
-        //     'data' => $message
-        // ], 200); 
-
-
-
-
-        // Si no hay resultado, devolvemos un mensaje de que no existe ese id.
-        // if($message[0]->isEmpty()){
-        //     return response()->json([
-        //         'success' => false,
-        //         'message' => "El mensaje no existe"
-        //     ], 400);
-        // }
-
-        
         
         if($user->isAdmin == true || $user->id == $message->user_id){
             try{

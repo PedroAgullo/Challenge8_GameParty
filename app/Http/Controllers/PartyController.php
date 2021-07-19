@@ -24,6 +24,7 @@ class PartyController extends Controller
 
     }
 
+
     /**
      * Store a newly created resource in storage.
      *
@@ -42,7 +43,9 @@ class PartyController extends Controller
         $party = Party::create([
             'title' => $request->title,
             'game_id' => $request->game_id,
-            'userOwner' => auth()->user()->id
+            'userOwner' => auth()->user()->id,
+            'private' => $request->private,
+            'password' => $request->password
         ]);
 
         if ($party){
@@ -58,6 +61,7 @@ class PartyController extends Controller
             ], 500);  
         }
     }
+
 
     /**
      * Display the specified resource.

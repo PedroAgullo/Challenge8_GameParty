@@ -53,6 +53,20 @@ class GameController extends Controller
         ], 200);
     }
 
+
+    public function findByGenre(Request $request)
+    {
+        //    
+        $game = Game::where('genre', 'LIKE', '%'.$request->title.'%')->get();
+        
+        return response()->json([
+            'success' => true,
+            'data' => $game
+        ], 200);
+    }
+
+
+
     /**
      * Store a newly created resource in storage.
      *

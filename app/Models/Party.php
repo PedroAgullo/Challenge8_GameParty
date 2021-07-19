@@ -17,7 +17,9 @@ class Party extends Model
     protected $fillable = [
         'title',
         'game_id',
-        'userOwner'
+        'userOwner',
+        'private',
+        'password'
     ];
 
 
