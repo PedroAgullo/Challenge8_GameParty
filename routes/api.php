@@ -36,6 +36,7 @@ Route::middleware('auth:api')->group(function () {
     
     //Party routes
     Route::resource('parties', PartyController::class);
+    Route::post('parties/findByName', [PartyController::class, 'findByName']);
 
     //Memberships routes
     Route::resource('memberships', MembershipController::class);

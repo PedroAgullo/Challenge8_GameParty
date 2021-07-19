@@ -87,6 +87,7 @@ ejemplo, su usuario de Steam.
   * Buscar los juegos por título.
   * Ver todas las parties que hay creadas.
   * Ver parties por ID del juego.
+  * Buscar parties por nombre.
   * Crear parties con la temática que elija.
   * Crear partis privadas con password.
   * Borrar parties que haya creado.

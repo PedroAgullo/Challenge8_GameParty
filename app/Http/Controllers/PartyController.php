@@ -25,6 +25,17 @@ class PartyController extends Controller
     }
 
 
+    public function findByName(Request $request)
+    {
+        //    
+        $game = Party::where('title', 'LIKE', '%'.$request->title.'%')->get();
+        
+        return response()->json([
+            'success' => true,
+            'data' => $game
+        ], 200);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
