@@ -39,7 +39,8 @@ Route::middleware('auth:api')->group(function () {
 
     //Memberships routes
     Route::resource('memberships', MembershipController::class);
-
+    Route::post('memberships/users', [MembershipController::class, 'countUserParty']);
+    
     //Games routes
     Route::post('games/id', [GameController::class, 'byId']);
     Route::post('games/findByName', [GameController::class, 'findByName']);

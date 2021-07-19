@@ -18,13 +18,24 @@ class MembershipController extends Controller
     public function index()
     {
         //
-        $resultado = Membership::all();
+        $resultado = Membership::all()->groupBy('party_id');
         return response()->json([
             'success' => true,
             'message' => $resultado
         ], 200); 
 
     }
+
+    public function countUserParty()
+    {
+        //
+        $resultado = Membership::all()->count();
+        return response()->json([
+            'success' => true,
+            'message' => $resultado
+        ], 200);
+    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -95,7 +106,7 @@ class MembershipController extends Controller
     public function show($party_id)
     {
         //
-        $resultado = Membership::all()->groupBy('party_id');
+        $resultado = Membership::where('party_id', $party_id)->get();
         return response()->json([
             'success' => true,
             'message' => $resultado

@@ -88,6 +88,7 @@ ejemplo, su usuario de Steam.
   * Ver todas las parties que hay creadas.
   * Ver parties por ID del juego.
   * Crear parties con la temática que elija.
+  * Crear partis privadas con password.
   * Borrar parties que haya creado.
   * Entrar/salir a una party.
   * Escribir mensajes en las parties donde haya entrado.
