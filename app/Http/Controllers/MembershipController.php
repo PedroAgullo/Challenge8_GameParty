@@ -113,6 +113,29 @@ class MembershipController extends Controller
         ], 200); 
     }
 
+
+
+    public function userId(Request $request)
+    {
+        //
+
+        $user = auth()->user();
+
+        if ($user->id != $request->user_id){
+            return response()->json([
+                'success' => true,
+                'message' => "No tienes permisos para realizar esta acción"
+            ], 400); 
+        }
+
+        $resultado = Membership::where('user_id', $request->user_id)->get();
+        return response()->json([
+            'success' => true,
+            'message' => $resultado
+        ], 200); 
+    }
+
+
     /**
      * Update the specified resource in storage.
      *
