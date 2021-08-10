@@ -41,7 +41,7 @@ Es el 9º proyecto de la  [GeeksHubs Academy](https://bootcamp.geekshubsacademy.
 
 **DBeaver**
 
-<img src="./resources/img/dBeaver.png">
+<img src="./resources/img/DBeaver.png">
 
 
 | <img src="./resources/img/logovisual.png" alt="Visual" width="30"/> | Visual Studio Code |
